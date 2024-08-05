@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker Dashboard</title>
+    <link rel="stylesheet" href="static/dashboard.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">
+        <h1>Expense Tracker</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/logout" id="homeBtn">Home</a></li>
+        <li><a href="#" id="profileBtn"><%=profile></a></li>
+      </ul>
+    </div>
+
+    <div class="main-container">
+      <div class="left-section">
+        <div class="container">
+          <div class="budget">
+            <img src="images/budgetIcon.png"
+              alt="Budget Icon"
+            />
+            <h3>Budget</h3>
+            <p>$<%=locals.budget%></p>
+          </div>
+          <div class="expenses">
+            <img
+                src="images/expensesIcon.png"
+              alt="Expenses Icon"
+            />
+            <h3>Expenses</h3>
+              <p>$<%=locals.sum%></p>
+          </div>
+          <div class="savings">
+            <img
+              src="images/savingsIcon.png"
+              alt="Savings Icon"
+            />
+            <h3>Savings</h3>
+            <%if (locals.budget < locals.sum) {%>
+              <p style="color: red;">$<%=locals.budget-locals.sum%></p>
+            <%}else{%>
+                <p style="color: green;">$<%=locals.budget-locals.sum%></p>  
+            <%}%>
+          </div>
+        </div>
+        <div class="chart-container">
+          <div class="chart">Chart</div>
+        </div>
+        <div class="expense-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (locals.expenses && locals.expenses.length > 0) { %>
+                <% expenses.forEach(expense => { %>
+                    <tr>
+                        <td><%= new Date(expense.exp_date).toLocaleDateString() %></td>
+                        <td><%= expense.description %></td>
+                        <td><%= expense.amount %></td>
+                        <td>
+                          <!-- Delete Form -->
+                          <button class="button delete-btn" data-id="<%= expense.id %>">
+                            <img src="images/deleteIcon.png" alt="Delete">
+                          </button>
+                          <!-- Update Form -->
+                           <button class="button update-btn" data-id="<%= expense.id %>">
+                              <img src="images/updateIcon.png" alt="Update">                        
+                           </button>
+                        </td>
+                    </tr>
+                <% }) %>
+              <% } else { %>
+                <tr>
+                    <td colspan="4">No expenses Yet!</td> 
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>           
+      <div class="right-section">
+        <div class="buttons-container">
+          <button id="addExpenseBtn" class="action-button">Add Expense</button>
+          <button id="addBudgetBtn" class="action-button">Add Budget</button>
+        </div>
+        <div class="quote-container">
+          <h3>Quotes of the Day</h3>
+          <p>
+            "The best way to predict the future is to create it." - Peter
+            Drucker
+          </p>
+          <p>
+            "Success usually comes to those who are too busy to be looking for
+            it." - Henry David Thoreau
+          </p>
+          <p>
+            "Don’t watch the clock; do what it does. Keep going." - Sam Levenson
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup for Add Expense -->
+    <div id="expensePopup" class="popup">
+      <div class="popup-content">
+        <h2>Add Expense</h2>
+        <form action="/dashboard/addExpense" method="post" id="expenseForm">
+          <input type="date" placeholder="date" name="date" required>
+          <input type="text" placeholder="Description" name="description" required />
+          <input type="number" placeholder="Amount" name="amount" required />
+          <div class="button-container">
+            <button type="submit" id="submitExpensebutton">Add Expense</button>
+            <button type="button" id="closeExpensePopup">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Popup for Add Budget -->
+    <div id="budgetPopup" class="popup">
+      <div class="popup-content">
+        <h2>Add Budget</h2>
+        <form action="/dashboard/addBudget" method="post" id="budgetForm">
+          <input type="number" name="budget" placeholder="Amount" required />
+          <div class="button-container">
+            <button type="submit">Add Budget</button>
+            <button type="button" id="closeBudgetPopup">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+              <!-- Delete Popup -->
+              <div id="deletePopup" class="popup">
+                <div class="popup-content">
+                  <h2>Confirm Delete</h2>
+                  <form id="deleteForm" action="/dashboard/delete-expense" method="post">
+                    <input type="hidden" id="deleteExpenseId" name="expenseId">
+                    <p>Are you sure you want to delete this expense?</p>
+                    <div class="button-container">
+                      <button type="submit">Yes</button>
+                      <button type="button" id="closeDeletePopup">No</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- Update form-->
+               <div id="updatePopup" class="popup">
+                  <div class="popup-content">
+                    <h2>Update Content</h2>
+                    <form id="updateForm" action="/dashboard/update-expense" method="post">
+                      <input type="hidden" id="updateExpenseId" name="updateId">
+                      <input type="date" placeholder="date" name="date" required>
+                      <input type="text" placeholder="Description" name="description" required />
+                      <input type="number" placeholder="Amount" name="amount" required />
+                      <div class="button-container">
+                        <button type="submit">Update</button>
+                      <button id="closeUpdatePopup">Close</button>
+                      <div>
+                    </form>
+                  </div>
+               </div>
+    <!-- JavaScript -->
+    <script src="static/dashboard.js"></script>
+  </body>
+</html>
