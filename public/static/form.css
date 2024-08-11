@@ -1,38 +1,138 @@
-
-form {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: whitesmoke;
+    font-family: cursive, sans-serif;
+    line-height: 1.6;
+  }
+.login-form-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin: 20px auto;
-    width: 300px;
-    background-color: #f7f7f7;
+    height: 100vh;
+    background-color: whitesmoke; /* Match the dashboard's background */
+}
+
+.login-form {
+    background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
-}
-input[type="email"],
-input[type="password"] {
-    padding: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
-    border: none;
-    border-radius: 5px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Adjust width as needed */
 }
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
+
+.login-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
+    color: black;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-form button {
+    background-color: #ffde4d; /* Match the action button color */
+    border: none;
+    border-radius: 9px;
     padding: 10px 20px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 5px;
+    font-size: 16px;
+    color: black;
     cursor: pointer;
-    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
-input[type="submit"]:hover {
-    background-color: #45a049;
+
+.login-form button:hover {
+    background-color: #fbd14b;
+    transform: scale(1.05);
+}
+
+.login-form .form-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-form .form-footer a {
+    color: #ffde4d;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login-form .form-footer a:hover {
+    text-decoration: underline;
+}
+.registration-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: whitesmoke; /* Match the dashboard's background */
+}
+
+.registration-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Adjust width as needed */
+}
+
+.registration-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
+    color: black;
+}
+
+.registration-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: black;
+}
+
+.registration-form input[type="email"],
+.registration-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.registration-form input[type="submit"] {
+    background-color: #ffde4d; /* Match the action button color */
+    border: none;
+    border-radius: 9px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.registration-form input[type="submit"]:hover {
+    background-color: #fbd14b;
+    transform: scale(1.05);
+}
+
+/* Additional styles for form layout */
+.registration-form br {
+    display: none; /* Hide the default line breaks */
 }
