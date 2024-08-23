@@ -50,4 +50,4 @@ Expense Tracker is a web application built with Node.js and Express that helps u
 .
 ## Contact
 
-For questions, contact : piyushsasane30mail@example.com.
+For questions, contact : piyushsasane30@gmail.com.
